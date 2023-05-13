@@ -9,7 +9,7 @@ public final class Serializer {
         return ois.readObject();
     }
 
-    public static byte[] serialize(Object obj) throws IOException, ClassCastException{
+    public static byte[] serialize(Object obj) throws IOException, ClassCastException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(baos);
         oos.writeObject(obj);

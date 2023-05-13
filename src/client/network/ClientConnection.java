@@ -2,7 +2,8 @@ package client.network;
 
 import common.interfaces.Connection;
 import common.interfaces.PackageSeparator;
-import common.network.*;
+import common.network.Request;
+import common.network.Response;
 import common.utility.Serializer;
 
 import java.io.IOException;
@@ -12,12 +13,13 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ClientConnection implements Connection, PackageSeparator {
     private final DatagramChannel client;
     private final InetSocketAddress address;
     private ByteBuffer byteBuffer;
-    private final int BUFFER = 8192;
+    private final int BUFFER = 2048;
     private final int port;
 
     public ClientConnection(InetAddress hostAddress, int port) throws IOException {
@@ -29,10 +31,10 @@ public class ClientConnection implements Connection, PackageSeparator {
     }
 
 
-    public void sendCommand(Request request) throws IOException{
+    public void sendCommand(Request request) throws IOException {
         byte[] data = Serializer.serialize(request);
         byte[][] splitData = split(data);
-        for (byte[] array : splitData){
+        for (byte[] array : splitData) {
             byteBuffer.clear();
             byteBuffer = ByteBuffer.wrap(array);
             client.send(byteBuffer, address);
@@ -40,31 +42,33 @@ public class ClientConnection implements Connection, PackageSeparator {
     }
 
 
-    public byte[] receive() throws IOException{
+    public byte[] receive() throws IOException {
         ByteBuffer buffer = ByteBuffer.allocate(BUFFER);
         SocketAddress socketAddress = null;
-        while (socketAddress == null){
+        while (socketAddress == null) {
             socketAddress = client.receive(buffer);
         }
         return buffer.array();
     }
 
-    public Response receiveResult() throws IOException, ClassNotFoundException{
+    public Response receiveResult() throws IOException, ClassNotFoundException {
         ArrayList<byte[]> arrayListOfBytes = new ArrayList<>();
         byte[] received;
-        received = receive();
+        do {
+            received = receive();
             arrayListOfBytes.add(received);
+        } while (received[BUFFER - 1] != 0);
         byte[] answer = merge(arrayListOfBytes);
         return (Response) Serializer.deserialize(answer);
     }
 
     @Override
-    public void connect(InetAddress addr, int port) throws IOException{
+    public void connect(InetAddress addr, int port) throws IOException {
         this.client.connect(new InetSocketAddress(addr, port));
     }
 
     @Override
-    public void disconnect() throws IOException{
+    public void disconnect() throws IOException {
         this.client.disconnect();
     }
 

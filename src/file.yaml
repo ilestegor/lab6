@@ -1,16 +1,4 @@
-- !!model.MusicBandClone
-  albumsCount: 2
-  coordinates:
-    x: 420
-    y: 240.0
-  creationDate: 2023-01-05T00:00
-  establishmentDate: 2007-04-14T20:00:00Z
-  genre: PUNK_ROCK
-  id: 2432443
-  label: Columbia Records
-  name: Joy Division
-  numberOfParticipants: 3
-- !!model.MusicBandClone
+- !!server.model.MusicBandClone
   albumsCount: 32
   coordinates:
     x: -43
@@ -22,3 +10,159 @@
   label: Hello
   name: Pink Floyd
   numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 543543
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 986234
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 43276453
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 6543245
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 76452345
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 765345
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 1324432
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 76544567
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 2346747
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 543564
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 6543456
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 32
+  coordinates:
+    x: -43
+    y: 505.0
+  creationDate: 2023-02-05T00:00
+  establishmentDate: 2023-07-18T00:00:43Z
+  genre: SOUL
+  id: 34534543
+  label: Hello
+  name: Pink Floyd
+  numberOfParticipants: 2
+- !!server.model.MusicBandClone
+  albumsCount: 2
+  coordinates:
+    x: 420
+    y: 240.0
+  creationDate: 2023-01-05T00:00
+  establishmentDate: 2007-04-14T20:00:00Z
+  genre: PUNK_ROCK
+  id: 2432443
+  label: Columbia Records
+  name: Woy Division
+  numberOfParticipants: 3

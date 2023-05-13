@@ -1,9 +1,12 @@
 package common.manager;
 
-import stuff.manager.validator.ModelValidator;
-import stuff.model.MusicBand;
-import stuff.parse.YamlReader;
-import stuff.utility.Printer;
+import common.network.Request;
+import common.network.Response;
+import common.network.ResponseFactory;
+import common.utility.Printer;
+import server.model.MusicBand;
+import server.parse.YamlReader;
+import common.validators.ModelValidator;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
@@ -85,18 +88,21 @@ public class ServerCollectionManager {
      *
      * @param musicBand
      */
-    public void removeFromCollection(MusicBand musicBand) {
+    public Response removeFromCollection(MusicBand musicBand) {
         if (musicBand != null) {
             musicBandLinkedList.remove(musicBand);
-            printer.printNextLine("Объект с id " + musicBand.getId() + " успешно удален!");
-        } else printer.printNextLine("Объекта с введенным id не существует");
+            return new ResponseFactory().createResponse("Объект с id " + musicBand.getId() + " успешно удален!");
+        } else return new ResponseFactory().createResponse("Объекта с введенным id не существует");
     }
 
-    public void updateElementInCollection(MusicBand musicBand, Integer userInput){
-        if (findModelById(userInput) != null){
-            musicBand.updateElement(UserManager.requestDataForUserMusicBand());
-        } else printer.printNextLine("Объекта с id " + userInput + " нет в коллекции!");
+    public Response updateElementInCollection(MusicBand musicBand, Integer userInput, Request request) {
+        if (findModelById(userInput) != null) {
+            musicBand.updateElement(request.getRequestBodyMusicBand().getMusicBand());
+            return new ResponseFactory().createResponse("Объект с id: " + request.getRequestBody().getArgs()[0] + " успешно обновлен");
+        }
+        return new ResponseFactory().createResponse("Объекта с id " + userInput + " нет в коллекции!");
     }
+
     /**
      * Finds object by id
      *

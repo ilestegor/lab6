@@ -2,9 +2,11 @@ package common.command;
 
 import common.interfaces.CommandInterface;
 import common.manager.ServerCollectionManager;
+import common.manager.UserManager;
 import common.network.Request;
 import common.network.Response;
-import stuff.utility.Printer;
+import common.utility.Printer;
+import server.model.MusicBand;
 
 /**
  * Abstract class contains basic methods for executing commands
@@ -16,9 +18,10 @@ public abstract class Command implements CommandInterface {
     private String description;
 
     private String[] args;
+    private MusicBand musicBandArgs;
     private ServerCollectionManager serverCollectionManager;
-
-
+    private final int MAX_ID = 10000000;
+    private final UserManager userManager = new UserManager();
 
     /**
      * Constructor for Command abstract class
@@ -32,17 +35,21 @@ public abstract class Command implements CommandInterface {
         this.serverCollectionManager = serverCollectionManager;
     }
 
-    public Command() {}
-
+    public Command() {
+    }
 
 
     public abstract Response execute(Request request);
+
     public abstract Request execute(Printer printer);
 
 
     @Override
-    public abstract boolean checkArgument(Printer printer, String[] inputArgs);
+    public abstract boolean checkArgument(String[] inputArgs);
 
+    public boolean checkMusicBandArgument(MusicBand musicBand) {
+        return musicBand != null;
+    }
 
     /**
      * Method gets description of stuff.command
@@ -71,6 +78,10 @@ public abstract class Command implements CommandInterface {
         this.args = args;
     }
 
+    public void setArgs(MusicBand musicBand) {
+        this.musicBandArgs = musicBand;
+    }
+
     public ServerCollectionManager getMusicBandCollectionManager() {
         return serverCollectionManager;
     }
@@ -81,5 +92,13 @@ public abstract class Command implements CommandInterface {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getMAX_ID() {
+        return MAX_ID;
+    }
+
+    public UserManager getUserManager() {
+        return userManager;
     }
 }

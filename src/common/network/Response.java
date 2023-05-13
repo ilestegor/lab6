@@ -5,6 +5,9 @@ import java.io.Serializable;
 public class Response implements Serializable {
     private String message;
 
+    public Response() {
+    }
+
     public Response(String message) {
         this.message = message;
     }

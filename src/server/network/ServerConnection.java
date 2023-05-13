@@ -11,12 +11,10 @@ import java.net.*;
 import java.util.ArrayList;
 
 public class ServerConnection implements Connection, PackageSeparator {
-    private DatagramSocket socket;
-//    private InetSocketAddress address;
+    private final DatagramSocket socket;
     private DatagramPacket dpack;
-    private final int BUFFER = 8192;
-    private byte[] buffer;
-
+    private final int BUFFER = 2048;
+    private final byte[] buffer;
 
 
     public ServerConnection(int port) throws SocketException {
