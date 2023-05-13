@@ -1,8 +1,11 @@
 package common.network;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Request implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -9137511527076368943L;
     private final CommandDTO commandDTO;
     private RequestBody requestBody;
     private RequestBodyMusicBand requestBodyMusicBand;

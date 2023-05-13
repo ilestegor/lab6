@@ -1,5 +1,6 @@
 package common.command;
 
+import common.exception.WrongArgumentException;
 import common.manager.ServerCollectionManager;
 import common.network.Request;
 import common.network.RequestFactory;
@@ -7,9 +8,11 @@ import common.network.Response;
 import common.network.ResponseFactory;
 import common.utility.Printer;
 import server.model.MusicBand;
-import common.exception.WrongArgumentException;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Class contains implementation of print_filed_ascending_number_of_participants
@@ -39,17 +42,9 @@ public class PrintFieldAscNumberOfParticipantsCommand extends Command {
         if (getMusicBandCollectionManager().getMusicBandLinkedList().isEmpty()) {
             return new ResponseFactory().createResponse("Коллекция пуста");
         } else {
-            LinkedHashMap<String, Integer> bandNameAndParticipantsCount = new LinkedHashMap<>();
-            for (MusicBand musicBand : getMusicBandCollectionManager().getMusicBandLinkedList()) {
-                bandNameAndParticipantsCount.put(musicBand.getName(), musicBand.getNumberOfParticipants());
-            }
-            List<Map.Entry<String, Integer>> newList = new ArrayList<Map.Entry<String, Integer>>(bandNameAndParticipantsCount.entrySet());
-            Collections.sort(newList, new Comparator<Map.Entry<String, Integer>>() {
-                @Override
-                public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                    return o1.getValue() - o2.getValue();
-                }
-            });
+            LinkedHashMap<String, Integer> bandNameAndParticipantsCount =  getMusicBandCollectionManager().getMusicBandLinkedList().stream().collect(Collectors.toMap(MusicBand::getName, MusicBand::getNumberOfParticipants, (v1, v2) -> v2, LinkedHashMap::new)); //from list to linkedhashmap
+            List<Map.Entry<String, Integer>> newList = new ArrayList<>(bandNameAndParticipantsCount.entrySet());
+            newList.sort(Comparator.comparingInt(Map.Entry::getValue));
             ArrayList<String> bandsForResponse = new ArrayList<>();
             for (Map.Entry<String, Integer> l : newList) {
                 bandsForResponse.add(l.getKey() + "  ->  " + l.getValue());

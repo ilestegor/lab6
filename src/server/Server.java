@@ -5,7 +5,6 @@ import common.manager.ServerCollectionManager;
 import common.manager.UserManager;
 import common.network.Request;
 import common.network.Response;
-import common.network.ResponseFactory;
 import common.porcessors.ServerCommandProcessor;
 import common.utility.Printer;
 import server.network.ServerConnection;
@@ -14,22 +13,20 @@ import server.parse.YamlWriter;
 
 import java.io.IOException;
 import java.net.SocketException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Server {
-    private boolean isRunning;
     Response response;
     ServerConnection serverConnection;
     ServerCollectionManager sc;
     CommandManager cm;
     YamlReader yamlReader;
     YamlWriter yamlWriter;
-    public void run(){
+
+    public void run() {
         try {
             serverConnection = new ServerConnection(32458);
             sc = new ServerCollectionManager();
-            isRunning = true;
+            boolean isRunning = true;
             MainServerApp.LOGGER.info("Сервер начал работу");
             cm = new CommandManager(sc, new UserManager());
             yamlReader = new YamlReader(new Printer());
@@ -51,13 +48,13 @@ public class Server {
                             + " " + serverConnection.getDpack().getPort());
                     yamlWriter.write(System.getenv("YamlFile"));
                     serverConnection.disconnect();
-                } catch (IOException ex){
+                } catch (IOException ex) {
                     MainServerApp.LOGGER.warning("Ошибка IO");
-                } catch (ClassNotFoundException ex){
+                } catch (ClassNotFoundException ex) {
                     MainServerApp.LOGGER.warning("Возникла проблема сериализации данных");
                 }
             }
-        } catch (SocketException ex){
+        } catch (SocketException ex) {
             MainServerApp.LOGGER.warning("Проблема соединения!");
         }
     }

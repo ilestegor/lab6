@@ -1,5 +1,6 @@
 package common.command;
 
+import common.exception.WrongArgumentException;
 import common.manager.ServerCollectionManager;
 import common.network.Request;
 import common.network.RequestFactory;
@@ -7,9 +8,9 @@ import common.network.Response;
 import common.network.ResponseFactory;
 import common.utility.Printer;
 import server.model.MusicBand;
-import common.exception.WrongArgumentException;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Class contains implementation of show stuff.command
@@ -35,14 +36,11 @@ public class ShowCommand extends Command {
 
     @Override
     public Response execute(Request request) {
-        ArrayList<String> musicBandShowCommandList = new ArrayList<>();
-
         if (getMusicBandCollectionManager().getMusicBandLinkedList().isEmpty()) {
             return new ResponseFactory().createResponse("Коллекция пустая!");
         } else {
-            for (MusicBand musicBand : getMusicBandCollectionManager().getMusicBandLinkedList()) {
-                musicBandShowCommandList.add(musicBand.toString());
-            }
+            ArrayList<String> musicBandShowCommandList = new ArrayList<>();
+            getMusicBandCollectionManager().getMusicBandLinkedList().stream().map(MusicBand::toString).forEachOrdered(musicBandShowCommandList::add);
             return new ResponseFactory().createResponse(String.join("", musicBandShowCommandList));
         }
     }

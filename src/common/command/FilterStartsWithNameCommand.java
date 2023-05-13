@@ -1,5 +1,6 @@
 package common.command;
 
+import common.exception.WrongArgumentException;
 import common.manager.ServerCollectionManager;
 import common.network.Request;
 import common.network.RequestFactory;
@@ -7,7 +8,6 @@ import common.network.Response;
 import common.network.ResponseFactory;
 import common.utility.Printer;
 import server.model.MusicBand;
-import common.exception.WrongArgumentException;
 
 /**
  * Class contains implementation of filter_starts_with_name stuff.command
@@ -34,15 +34,10 @@ public class FilterStartsWithNameCommand extends Command {
 
     @Override
     public Response execute(Request request) {
-        int count = 0;
         if (getMusicBandCollectionManager().getMusicBandLinkedList().isEmpty()) {
             return new ResponseFactory().createResponse("Коллекция пуста!");
         } else {
-            for (MusicBand musicBand : getMusicBandCollectionManager().getMusicBandLinkedList()) {
-                if (musicBand.getName().startsWith(request.getRequestBody().getArgs()[0])) {
-                    count++;
-                }
-            }
+            long count = getMusicBandCollectionManager().getMusicBandLinkedList().stream().filter(musicBand -> musicBand.getName().startsWith(request.getRequestBody().getArgs()[0])).count();
             if (count == 0) {
                 return new ResponseFactory().createResponse("Групп с такой подстрокой не нашлось!");
             }

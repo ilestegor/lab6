@@ -3,6 +3,7 @@ package server.model;
 import common.exception.FiledIsNotCorrectException;
 import common.validators.ModelValidator;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -11,6 +12,8 @@ import java.io.Serializable;
  * @author ilestegor
  */
 public class Coordinates implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 9215677719801477893L;
     private Long x;
     private float y;
     private final ModelValidator modelValidator = new ModelValidator();

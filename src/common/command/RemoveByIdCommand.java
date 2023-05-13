@@ -1,12 +1,12 @@
 package common.command;
 
+import common.exception.WrongArgumentException;
 import common.manager.ServerCollectionManager;
 import common.network.Request;
 import common.network.RequestFactory;
 import common.network.Response;
 import common.network.ResponseFactory;
 import common.utility.Printer;
-import common.exception.WrongArgumentException;
 
 /**
  * Class contains implementation of remove_by_id stuff.command
@@ -39,7 +39,6 @@ public class RemoveByIdCommand extends Command {
         } else {
             int id = Integer.parseInt(getArgs()[0]);
             return getMusicBandCollectionManager().removeFromCollection(getMusicBandCollectionManager().findModelById(id));
-//                return new ResponseFactory().createResponse("Элемент с id " + request.getRequestBody().getArgs()[0] + " удален из коллекции");
 
         }
     }

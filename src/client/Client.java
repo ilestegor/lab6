@@ -18,13 +18,13 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Client {
-    private Printer printer;
     ClientConnection clientConnection;
     UserManager userManager;
     CommandManager manager;
     ClientCommandProcessor cmp;
-    public void run(){
-        printer = new Printer();
+
+    public void run() {
+        Printer printer = new Printer();
         try {
             clientConnection = new ClientConnection(InetAddress.getLocalHost(), 32458);
             clientConnection.connect(clientConnection.getAddress().getAddress(), clientConnection.getPort());
@@ -65,9 +65,9 @@ public class Client {
                 clientConnection.getClient().disconnect();
                 clientConnection.getClient().close();
             }
-        } catch (IOException ex){
+        } catch (IOException ex) {
             printer.printError("Ошибка IO");
-        } catch (ClassNotFoundException ex){
+        } catch (ClassNotFoundException ex) {
             printer.printError("Ошибка сериализация данных");
         }
 

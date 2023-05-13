@@ -1,11 +1,11 @@
 package common.command;
 
+import common.exception.RecursionException;
 import common.manager.ServerCollectionManager;
 import common.manager.UserManager;
 import common.network.Request;
 import common.network.Response;
 import common.utility.Printer;
-import common.exception.RecursionException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -38,7 +38,7 @@ public class ExecuteScriptCommand extends Command {
         if (checkArgument(getArgs())) {
             String path = getArgs()[0];
             File scriptFile = new File(path).getAbsoluteFile();
-            if (filePaths.add(scriptFile)){
+            if (filePaths.add(scriptFile)) {
                 try {
                     if (scriptFile.length() == 0) {
                         printer.printNextLine("Скрипт пустой или такого файла не существует!");

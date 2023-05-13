@@ -1,6 +1,7 @@
 package common.command;
 
 
+import common.exception.WrongArgumentException;
 import common.manager.ServerCollectionManager;
 import common.network.Request;
 import common.network.RequestFactory;
@@ -8,7 +9,6 @@ import common.network.Response;
 import common.network.ResponseFactory;
 import common.utility.Printer;
 import server.model.MusicBand;
-import common.exception.WrongArgumentException;
 
 /**
  * Class contains implementation of count_by_number_of_participants stuff.command
@@ -35,16 +35,12 @@ public class CountByNumberOfParticipantsCommand extends Command {
 
     @Override
     public Response execute(Request request) {
-        int count = 0;
+//        int count = 0;
         int userCountInput = Integer.parseInt(request.getRequestBody().getArgs()[0]);
         if (getMusicBandCollectionManager().getMusicBandLinkedList().isEmpty()) {
             return new ResponseFactory().createResponse("Коллекция пуста!");
         } else {
-            for (MusicBand musicBand : getMusicBandCollectionManager().getMusicBandLinkedList()) {
-                if (musicBand.getNumberOfParticipants() == userCountInput) {
-                    count++;
-                }
-            }
+            long count = getMusicBandCollectionManager().getMusicBandLinkedList().stream().filter(musicBand -> musicBand.getNumberOfParticipants().equals(userCountInput)).count();
             if (count == 0) {
                 return new ResponseFactory().createResponse("Музыкальных групп с таким количеством участников не найдено!");
             }

@@ -9,8 +9,6 @@ import common.utility.Serializer;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ServerConnection implements Connection, PackageSeparator {
     private final DatagramSocket socket;

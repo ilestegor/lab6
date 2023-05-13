@@ -3,6 +3,7 @@ package server.model;
 import common.exception.FiledIsNotCorrectException;
 import common.validators.ModelValidator;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -14,6 +15,8 @@ import java.util.Date;
  * @author ilestegor
  */
 public class MusicBand implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 8855024745871880934L;
     private long id; //must be unique, > 0 and generated automatically
     private String name; //filed can't be null or empty
     private Coordinates coordinates; //field can't be null

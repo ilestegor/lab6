@@ -1,5 +1,6 @@
 package server.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,6 +10,8 @@ import java.util.Date;
  * @author ilestegor
  */
 public class MusicBandClone implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 8524131703524372263L;
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null

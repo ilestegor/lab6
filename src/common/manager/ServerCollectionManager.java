@@ -4,9 +4,9 @@ import common.network.Request;
 import common.network.Response;
 import common.network.ResponseFactory;
 import common.utility.Printer;
+import common.validators.ModelValidator;
 import server.model.MusicBand;
 import server.parse.YamlReader;
-import common.validators.ModelValidator;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
@@ -110,12 +110,7 @@ public class ServerCollectionManager {
      * @return
      */
     public MusicBand findModelById(Integer id) {
-        for (MusicBand m : musicBandLinkedList) {
-            if (m.getId() == id) {
-                return m;
-            }
-        }
-        return null;
+        return musicBandLinkedList.stream().filter(musicBand -> musicBand.getId() == id).findFirst().orElse(null);
     }
 
     /**

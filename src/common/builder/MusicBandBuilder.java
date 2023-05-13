@@ -1,7 +1,7 @@
 package common.builder;
 
-import common.utility.Printer;
 import common.interfaces.IMusicBandBuilder;
+import common.utility.Printer;
 import common.validators.ModelValidator;
 import server.model.Coordinates;
 import server.model.Label;

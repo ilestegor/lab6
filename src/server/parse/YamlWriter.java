@@ -1,12 +1,11 @@
 package server.parse;
 
+import common.interfaces.BaseWriter;
 import common.manager.ServerCollectionManager;
-import common.utility.Printer;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 import server.MainServerApp;
 import server.model.MusicBand;
-import common.interfaces.BaseWriter;
 
 import java.io.File;
 import java.io.FileOutputStream;

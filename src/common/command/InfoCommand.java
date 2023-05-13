@@ -1,11 +1,11 @@
 package common.command;
 
+import common.exception.WrongArgumentException;
 import common.manager.ServerCollectionManager;
 import common.network.Request;
 import common.network.RequestFactory;
 import common.network.Response;
 import common.utility.Printer;
-import common.exception.WrongArgumentException;
 
 /**
  * Class contains implementation of info stuff.command

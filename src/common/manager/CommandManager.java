@@ -16,6 +16,7 @@ public class CommandManager {
     private static HashMap<String, Command> serverCommandMap;
     private final ServerCollectionManager serverCollectionManager;
     private static final Printer printer = new Printer();
+    private static final int COMMAND_NAME_POSITION = 0;
 
 
     public CommandManager(ServerCollectionManager serverCollectionManager, UserManager userManager) {
@@ -79,7 +80,7 @@ public class CommandManager {
         if (inputData.length == 0) {
             return false;
         } else {
-            String command = inputData[0];
+            String command = inputData[COMMAND_NAME_POSITION];
             return clientCommandMap.containsKey(command);
         }
     }

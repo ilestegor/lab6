@@ -1,5 +1,6 @@
 package common.command;
 
+import common.exception.WrongArgumentException;
 import common.manager.ServerCollectionManager;
 import common.network.Request;
 import common.network.RequestFactory;
@@ -7,7 +8,6 @@ import common.network.Response;
 import common.network.ResponseFactory;
 import common.utility.Printer;
 import server.model.MusicBand;
-import common.exception.WrongArgumentException;
 
 import java.time.LocalDate;
 import java.util.Random;

@@ -13,13 +13,13 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class ClientConnection implements Connection, PackageSeparator {
     private final DatagramChannel client;
     private final InetSocketAddress address;
     private ByteBuffer byteBuffer;
     private final int BUFFER = 2048;
+    private final int MAX_BUFFER = BUFFER - 1;
     private final int port;
 
     public ClientConnection(InetAddress hostAddress, int port) throws IOException {
@@ -57,7 +57,7 @@ public class ClientConnection implements Connection, PackageSeparator {
         do {
             received = receive();
             arrayListOfBytes.add(received);
-        } while (received[BUFFER - 1] != 0);
+        } while (received[MAX_BUFFER] != 0);
         byte[] answer = merge(arrayListOfBytes);
         return (Response) Serializer.deserialize(answer);
     }
