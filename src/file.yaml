@@ -154,15 +154,3 @@
   label: Hello
   name: Pink Floyd
   numberOfParticipants: 2
-- !!server.model.MusicBandClone
-  albumsCount: 2
-  coordinates:
-    x: 420
-    y: 240.0
-  creationDate: 2023-01-05T00:00
-  establishmentDate: 2007-04-14T20:00:00Z
-  genre: PUNK_ROCK
-  id: 2432443
-  label: Columbia Records
-  name: Woy Division
-  numberOfParticipants: 3

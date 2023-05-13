@@ -1,8 +1,12 @@
-package server.model;
+package common.builder;
 
 import common.utility.Printer;
 import common.interfaces.IMusicBandBuilder;
 import common.validators.ModelValidator;
+import server.model.Coordinates;
+import server.model.Label;
+import server.model.MusicBand;
+import server.model.MusicGenre;
 
 import java.io.Serializable;
 import java.text.DateFormat;

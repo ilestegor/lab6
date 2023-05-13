@@ -4,6 +4,7 @@ import common.manager.ServerCollectionManager;
 import common.utility.Printer;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
+import server.MainServerApp;
 import server.model.MusicBand;
 import common.interfaces.BaseWriter;
 
@@ -17,12 +18,10 @@ import java.io.OutputStreamWriter;
  *
  * @author ilestegor
  */
-public class YamlWriter implements BaseWriter, Runnable {
-    private final Printer printer;
+public class YamlWriter implements BaseWriter {
     private final ServerCollectionManager serverCollectionManager;
 
-    public YamlWriter(Printer printer, ServerCollectionManager serverCollectionManager) {
-        this.printer = printer;
+    public YamlWriter(ServerCollectionManager serverCollectionManager) {
         this.serverCollectionManager = serverCollectionManager;
     }
 
@@ -32,20 +31,15 @@ public class YamlWriter implements BaseWriter, Runnable {
         options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
         Yaml yaml = new Yaml(options);
         if (path == null || !new File(path).exists()) {
-            printer.printError("Файла, который задан в переменной окружения не существует. Коллекция не сохранена в файл!");
+            MainServerApp.LOGGER.warning("Файла, который задан в переменной окружения не существует. Коллекция не сохранена в файл!");
             return;
         }
         try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(path))) {
             yaml.dump(new CloneParser().parseToClone(serverCollectionManager.getMusicBandLinkedList().toArray(new MusicBand[0])), writer);
             writer.flush();
-            printer.printNextLine("Коллекция успешно сохранена");
+            MainServerApp.LOGGER.info("Коллекция успешно сохранена");
         } catch (IOException e) {
-            printer.printError("Отсутсвуют права на файл! Коллекция не сохранена в файл");
+            MainServerApp.LOGGER.warning("Отсутсвуют права на файл! Коллекция не сохранена в файл");
         }
-    }
-
-    @Override
-    public void run() {
-        write(System.getenv("YamlFle"));
     }
 }

@@ -4,7 +4,7 @@ import common.command.Command;
 import common.utility.Printer;
 import common.utility.RecursionLimiter;
 import server.model.MusicBand;
-import server.model.MusicBandBuilder;
+import common.builder.MusicBandBuilder;
 
 import java.util.*;
 
@@ -30,23 +30,6 @@ public class UserManager {
         scanner = new Scanner(System.in);
     }
 
-    /**
-     * Requests commands for script from file
-     *
-     * @param list
-     */
-    public void requestCommandForScript(List<String> list) {
-        try {
-            for (String command : list) {
-                command = command.replaceAll("\\s+", " ").trim().strip();
-                printer.printNextLine("\nСейчас выполняется команда " + command);
-                RecursionLimiter.emerge();
-                this.inputCommand.add(command);
-            }
-        } catch (Exception ex) {
-            printer.printError("\nСкрипт вызывает сам себя! Выход из скрипта");
-        }
-    }
 
     /**
      * Gets data from user via Command Line and executes commands
@@ -72,11 +55,9 @@ public class UserManager {
      */
     public void requestCommand() {
         try {
-//            inputCommand = new LinkedList<>();
             printer.printThisLine("\nВведите команду: ");
             String line = scanner.nextLine().strip().replaceAll("\\s+", " ");
             inputCommand.addLast(line);
-//            return requestPlainCommand(line);
         } catch (NoSuchElementException ex) {
             printer.printNextLine("Завершение программы!");
             setIsInWork(false);

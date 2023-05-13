@@ -4,6 +4,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import common.utility.Printer;
+import server.MainServerApp;
 import server.model.MusicBand;
 import common.interfaces.BaseReader;
 
@@ -32,17 +33,14 @@ public class YamlReader implements BaseReader {
         try {
             InputStreamReader input = new InputStreamReader(new FileInputStream(path));
             musicBands = yamlMapper.readValue(input, MusicBand[].class);
+            MainServerApp.LOGGER.info("Коллекция загружена из файла");
         } catch (FileNotFoundException ex) {
-            printer.printNextLine("Файл не найден или отсутсвуют права на файл!");
+            MainServerApp.LOGGER.warning("Файл не найден или отсутствуют права на файл!");
         } catch (IOException ex) {
-            printer.printNextLine("Файл пустой или поля у объектов невалидны. Проверьте файл и валидность данных!");
+            MainServerApp.LOGGER.warning("Файл пустой или поля у объектов невалидны. Проверьте файл и валидность данных!");
         } catch (ClassCastException ex) {
-            printer.printNextLine("Тип введенного поля не соответсвует требуемому типу! Попробуйте еще раз");
+            MainServerApp.LOGGER.warning("Тип введенного поля не соответствует требуемому типу! Попробуйте еще раз");
         }
-        return musicBands;
-    }
-
-    public MusicBand[] getMusicBands() {
         return musicBands;
     }
 }
