@@ -10,3 +10,15 @@
   label: Hello
   name: Wolly Dolly
   numberOfParticipants: 34
+- !!server.model.MusicBandClone
+  albumsCount: 4
+  coordinates:
+    x: 4
+    y: 4.0
+  creationDate: 2023-05-14T00:00
+  establishmentDate: 2021-12-20T21:00:00Z
+  genre: SOUL
+  id: 2048076
+  label: d
+  name: fd
+  numberOfParticipants: 4
