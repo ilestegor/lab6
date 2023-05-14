@@ -1,5 +1,6 @@
 package common.command;
 
+import common.exception.CantBeSendException;
 import common.exception.RecursionException;
 import common.manager.ServerCollectionManager;
 import common.manager.UserManager;
@@ -68,7 +69,7 @@ public class ExecuteScriptCommand extends Command {
 
     @Override
     public Response execute(Request request) {
-        return null;
+        throw new CantBeSendException("Команда не отправляет ответа!");
     }
 
     @Override
